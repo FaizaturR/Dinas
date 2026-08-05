@@ -18,7 +18,6 @@ class EnsureAdminRole
 
         $userRole = auth()->user()->role;
 
-        // Superadmin otomatis boleh mengakses semua halaman yang bisa diakses admin biasa.
         if ($userRole === 'superadmin') {
             return $next($request);
         }

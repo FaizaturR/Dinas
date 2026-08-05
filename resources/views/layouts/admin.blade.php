@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,7 +12,7 @@
     <link href="{{ asset('admin-assets/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 
     <style>
-        :root{
+        :root {
             --navy: #0B1F3A;
             --navy-mid: #162F55;
             --navy-light: #1E3F70;
@@ -80,6 +81,7 @@
 
     @stack('styles')
 </head>
+
 <body id="page-top">
 
     <div id="wrapper">
@@ -162,10 +164,10 @@
                 <div id="collapseKegiatan" class="collapse {{ request()->routeIs('admin.kegiatan.*') ? 'show' : '' }}" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         @foreach (\App\Models\Bidang::orderBy('id')->get() as $b)
-                            <a class="collapse-item {{ request()->route('bidang')?->id === $b->id ? 'active' : '' }}"
-                                href="{{ route('admin.kegiatan.per-bidang', $b) }}">
-                                {{ $b->nama }}
-                            </a>
+                        <a class="collapse-item {{ request()->route('bidang')?->id === $b->id ? 'active' : '' }}"
+                            href="{{ route('admin.kegiatan.per-bidang', $b) }}">
+                            {{ $b->nama }}
+                        </a>
                         @endforeach
                     </div>
                 </div>
@@ -180,11 +182,11 @@
             <hr class="sidebar-divider">
 
             @if (auth()->user()->role === 'superadmin')
-                <li class="nav-item {{ request()->routeIs('admin.kelola-admin.*') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('admin.kelola-admin.index') }}">
-                        <i class="fas fa-fw fa-user-shield"></i><span>Kelola Admin</span>
-                    </a>
-                </li>
+            <li class="nav-item {{ request()->routeIs('admin.kelola-admin.*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.kelola-admin.index') }}">
+                    <i class="fas fa-fw fa-user-shield"></i><span>Kelola Admin</span>
+                </a>
+            </li>
             @endif
 
             <div class="text-center d-none d-md-inline">
@@ -219,35 +221,35 @@
                     </ul>
                 </nav>
 
-                <div class="container-fluid">               
+                <div class="container-fluid">
                     @if(session('success'))
-                        <div id="notifAlert" class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
-                            <i class="fas fa-check-circle mr-2"></i>
-                            {{ session('success') }}
-                            <button type="button" class="close" data-dismiss="alert">
-                                <span>&times;</span>
-                            </button>
-                        </div>
+                    <div id="notifAlert" class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+                        <i class="fas fa-check-circle mr-2"></i>
+                        {{ session('success') }}
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span>&times;</span>
+                        </button>
+                    </div>
                     @endif
 
                     @if(session('error'))
-                        <div id="notifAlert" class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
-                            <i class="fas fa-exclamation-circle mr-2"></i>
-                            {{ session('error') }}
-                            <button type="button" class="close" data-dismiss="alert">
-                                <span>&times;</span>
-                            </button>
-                        </div>
+                    <div id="notifAlert" class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+                        <i class="fas fa-exclamation-circle mr-2"></i>
+                        {{ session('error') }}
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span>&times;</span>
+                        </button>
+                    </div>
                     @endif
 
                     @if($errors->any())
-                        <div id="notifAlert" class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
-                            <i class="fas fa-exclamation-circle mr-2"></i>
-                            {{ $errors->first() }}
-                            <button type="button" class="close" data-dismiss="alert">
-                                <span>&times;</span>
-                            </button>
-                        </div>
+                    <div id="notifAlert" class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+                        <i class="fas fa-exclamation-circle mr-2"></i>
+                        {{ $errors->first() }}
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span>&times;</span>
+                        </button>
+                    </div>
                     @endif
 
                     @yield('content')
@@ -273,17 +275,18 @@
     <script src="{{ asset('admin-assets/vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('admin-assets/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script>
-    $(function () {
-        var alertBox = document.getElementById('notifAlert');
-    
-        if (alertBox) {
-            setTimeout(function () {
-                $(alertBox).alert('close');
-            }, 4000);
-        }
-    });
+        $(function() {
+            var alertBox = document.getElementById('notifAlert');
+
+            if (alertBox) {
+                setTimeout(function() {
+                    $(alertBox).alert('close');
+                }, 4000);
+            }
+        });
     </script>
-    
+
     @stack('scripts')
 </body>
+
 </html>
